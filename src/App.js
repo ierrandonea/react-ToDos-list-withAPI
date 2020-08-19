@@ -1,40 +1,46 @@
 import React, { useState, useRef } from 'react';
 
 function App() {
-  const [state, setState] = useState(["Make the bed", "Wash my hands", "Eat", "Walk the dog"])
+  const [state, setState] = useState([])
 
   const inputTask = useRef('');
 
   const handleKeyPress = e => {
-   if (e.keyCode === 13 && e.target.value !== '') {
+    if (e.keyCode === 13 && e.target.value !== '') {
       setState([...state, e.target.value]);
       e.target.value = '';
     } else {
-       console.log(inputTask.current.value);
+      console.log(inputTask.current.value);
     }
   }
 
   const handleClick = index => {
-      state.splice(index, 1);
-      console.log(state);
-      setState([...state])
+    state.splice(index, 1);
+    console.log(state);
+    setState([...state])
   };
 
   return (
     <div className="card d-flex justify-content-center
-    align-items-center text-center">
-      <h3>To do's</h3>
-      <input type="text" ref={inputTask} onKeyDown={handleKeyPress} />
-      <ul className="list-item-group">
-        {
-        state.map((task,index) => {
-          return (
-          <li className="list-item" key={index} onClick={() => handleClick(index)}>{task}</li>
-          )
-        })
-        }
-      </ul>
-      <span>{state.length} items left</span>
+    align-items-center">
+      <div className="row w-100 no-gutters">
+        <div className="col-12">
+          <h3 className="text-center mt-2">To do's</h3>
+          <input className="form-control rounded-0 border-left-0 border-right-0 border-top-0" type="text" ref={inputTask} onKeyDown={handleKeyPress} placeholder="New tasks goes here..."/>
+          <ul className="list-group rounded-0 border-0">
+            {
+              state.length > 0 ?
+              state.map((task, index) => {
+                return (
+                  <li className="list-group-item d-flex justify-content-between align-items-baseline rounded-0 border-left-0 border-right-0 border-top-0" key={index} onClick={() => handleClick(index)}>{task}<i class="fas fa-check-square"></i></li>
+                )
+              }) :
+              <li className="list-group-item text-muted rounded-0 border-left-0 border-right-0 border-top-0">Empty list</li>
+            }
+          </ul>
+          <span className="ml-2 text-muted">{state.length} items left</span>
+        </div>
+      </div>
     </div>
   );
 }

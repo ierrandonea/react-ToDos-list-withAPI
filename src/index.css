@@ -24,22 +24,48 @@ body {
   color: #00072d;
 }
 
-h3 {
+.font-600 {
   font-weight: 600;
 }
 
-li {
+.font-400 {
   font-weight: 400;
 }
 
-i {
-  color: #3cbbb1 !important;
+.font-200 {
+  font-weight: 200;
 }
 
-i:hover {
+i {
+  color: #bdbdbd !important;
+}
+
+.fa-check-square {
+  color: #1ab4cc !important;
+}
+
+.icons:hover .fa-check-square::before {
+  content: "\f146";
   color: #a72828 !important;
 }
 
-span, input, ::placeholder {
+::placeholder {
   font-weight: 200;
+}
+
+.reset-btn {
+  width: 3rem;
+  height: 1rem;
+  font-size: 9pt;
+  border: 1px solid #a72828;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-btn:hover {
+  background: #a72828;
+  color: white;
 }
